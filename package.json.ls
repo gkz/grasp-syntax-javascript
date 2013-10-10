@@ -1,0 +1,40 @@
+name: 'grasp-syntax-javascript'
+version: '0.1.0'
+
+author: 'George Zahariev <z@georgezahariev.com>'
+
+description: 'grasp query engines common parts'
+
+homepage: 'http://graspjs.com'
+
+keywords:
+  'grasp'
+  'syntax'
+  'javascript'
+  'ast'
+  'mozilla'
+  'spidermonkey'
+
+files:
+  'index.js'
+  'README.md'
+  'LICENSE'
+
+bugs: 'https://github.com/gkz/grasp-syntax-javascript/issues'
+licenses:
+  * type: 'MIT'
+    url: 'https://raw.github.com/gkz/grasp-syntax-javascript/master/LICENSE'
+  ...
+engines:
+  node: '>= 0.8.0'
+repository:
+  type: 'git'
+  url: 'git://github.com/gkz/grasp-syntax-javascript.git'
+
+dependencies:
+  'prelude-ls': '~1.0.3'
+
+dev-dependencies:
+  LiveScript: '~1.2.0'
+  mocha: '~1.8.2'
+  istanbul: '~0.1.43'

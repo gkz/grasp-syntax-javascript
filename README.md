@@ -1,6 +1,6 @@
 # Grasp Syntax JavaScript
 
-JavaScipt AST info for [grasp](http://graspjs.com) - [on GitHub](https://github.com/gkz/grasp).
+JavaScript AST info for [grasp](http://graspjs.com) - [on GitHub](https://github.com/gkz/grasp).
 
 [JS AST reference page on grasp](http://graspjs.com/docs/syntax-js/).
 

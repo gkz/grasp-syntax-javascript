@@ -32,9 +32,9 @@ repository:
   url: 'git://github.com/gkz/grasp-syntax-javascript.git'
 
 dependencies:
-  'prelude-ls': '~1.0.3'
+  'prelude-ls': '~1.1.2'
 
 dev-dependencies:
-  LiveScript: '~1.2.0'
+  livescript: '~1.4.0'
   mocha: '~1.8.2'
   istanbul: '~0.1.43'

@@ -1,6 +1,6 @@
 default: all
 
-LS = node_modules/LiveScript
+LS = node_modules/livescript
 LSC = node_modules/.bin/lsc
 MOCHA = node_modules/.bin/mocha
 MOCHA2 = node_modules/.bin/_mocha

@@ -14,6 +14,10 @@ syntax =
       alias: 'literal'
       primitives: <[ value ]>
       example: ['true', '1', '"string"']
+    RegExpLiteral:
+      alias: 'regex'
+      primitives: <[ regex ]> # object primitive?
+      example: '/^sh+/gi'
     Property:
       alias: 'prop'
       nodes: <[ key value ]>
@@ -21,6 +25,12 @@ syntax =
       syntax: '*key*: *value*'
       example: 'a: 1'
       note: 'An object expression (obj) has a list of properties, each being a property.'
+    SpreadElement:
+      alias: 'spread'
+      nodes: <[ argument ]>
+    TemplateElement:
+      alias: 'template-element'
+      primitives: <[ tail value ]> # value is obj primitive
   Statements:
     EmptyStatement:
       alias: 'empty'
@@ -196,7 +206,7 @@ syntax =
                 *body*
               '''
       example: '''
-               for (var x = 0; x < 2; x++) {
+               for (let x = 0; x < 2; x++) {
                  f(x);
                }
                '''
@@ -208,8 +218,20 @@ syntax =
                 *body*
               '''
       example: '''
-               for (prop in object) {
+               for (let prop in object) {
                  f(object[prop]);
+               }
+               '''
+    ForOfStatement:
+      alias: 'for-of'
+      nodes: <[ left right body ]>
+      syntax: '''
+              for (*left* of *right*)
+                *body*
+              '''
+      example: '''
+               for (let val of list) {
+                 f(val);
                }
                '''
     DebuggerStatement:
@@ -221,6 +243,7 @@ syntax =
       alias: 'func-dec'
       nodes: <[ id body ]>
       node-arrays: <[ params ]>
+      primitives: <[ generator ]>
       syntax: '''
               function *id*([*param_1*], [*param_2*], [..., *param_3*])
                 *body*
@@ -247,6 +270,9 @@ syntax =
     ThisExpression:
       alias: 'this'
       example: 'this'
+    Super:
+      alias: 'super'
+      example: 'super(x, y)'
     ArrayExpression:
       alias: 'arr'
       node-arrays: <[ elements ]>
@@ -272,21 +298,40 @@ syntax =
       alias: 'func-exp'
       nodes: <[ id body ]>
       node-arrays: <[ params ]>
+      primitives: <[ generator ]>
       syntax: '''
               function [*id*]([*param_1*], [*param_2*], [..., *param_3*])
                 *body*
               '''
       example: '''
-               var f = function (x, y) {
+               let f = function(x, y) {
                  return x * y;
                }
                '''
       note: 'A function expression contrasts with a function declaration (func-dec).'
+    ArrowFunctionExpression:
+      alias: 'arrow'
+      nodes: <[ id body ]>
+      node-arrays: <[ params ]>
+      primitives: <[ generator expression ]>
+      syntax: '''
+              ([*param_1*], [*param_2*], [..., *param_3*]) => *body*
+              '''
+      example: '''
+               (x, y) => x * y
+               '''
     SequenceExpression:
       alias: 'seq'
       node-arrays: <[ expressions ]>
       syntax: '*expression_1*, *expression_2*, *...*, *expression_n*'
       example: 'a, b, c'
+    YieldExpression:
+      alias: 'yield'
+      nodes: <[ argument ]>
+      primitive: <[ delegate ]>
+      syntax: 'yield *argument*'
+      example:
+        'yield x'
     UnaryExpression:
       alias: 'unary'
       nodes: <[ argument ]>
@@ -350,6 +395,12 @@ syntax =
       primitives: <[ computed ]>
       syntax: '*object*.*property*'
       example: 'Math.PI'
+    TemplateLiteral:
+      alias: 'template-literal'
+      node-arrays: <[ quasis expressions ]>
+    TaggedTemplateExpression:
+      alias: 'tagged-template-exp'
+      nodes: <[ tag quasi ]>
   Clauses:
     SwitchCase:
       alias: 'switch-case'
@@ -381,6 +432,72 @@ syntax =
                  console.error(e.message);
                }
                '''
+  Patterns:
+    AssignmentProperty:
+      alias: 'assign-prop'
+      nodes: <[ key value ]>
+      primitives: <[ kind method ]>
+    ObjectPattern:
+      alias: 'obj-pattern'
+      node-arrays: <[ properties ]>
+    ArrayPattern:
+      alias: 'array-pattern'
+      node-arrays: <[ elements ]>
+    RestElement:
+      alias: 'rest-element'
+      nodes: <[ argument ]>
+    AssignmentPattern:
+      alias: 'assign-pattern'
+      nodes: <[ left right ]>
+  Classes:
+    ClassBody:
+      alias: 'class-body'
+      node-arrays: <[ body ]>
+    MethodDefinition:
+      alias: 'method'
+      nodes: <[ key value ]>
+      primitives: <[ kind computed static ]>
+    ClassDeclaration:
+      alias: 'class-dec'
+      nodes: <[ id superClass body ]>
+    ClassExpression:
+      alias: 'class-exp'
+      nodes: <[ id superClass body ]>
+    MetaProperty:
+      alias: 'meta-property'
+      nodes: <[ meta property ]>
+  Modules:
+    ModuleDeclaration:
+      alias: 'module-dec'
+    ModuleSpecifier:
+      alias: 'module-specifier'
+      nodes: <[ local ]>
+  Imports:
+    ImportDeclaration:
+      alias: 'import-dec'
+      nodes: <[ specifiers source ]>
+    ImportSpecifier:
+      alias: 'import-specifier'
+      nodes: <[ local imported ]>
+    ImportDefaultSpecifier:
+      alias: 'import-default-specifier'
+      nodes: <[ local ]>
+    ImportNamespaceSpecifier:
+      alias: 'import-namespace-specifier'
+      nodes: <[ local ]>
+  Exports:
+    ExportNamedDeclaration:
+      alias: 'export-named-dec'
+      nodes: <[ declaration specifiers source ]>
+    ExportSpecifier:
+      alias: 'export-specifier'
+      nodes: <[ local exported ]>
+    ExportDefaultDeclaration:
+      alias: 'export-default-specifier'
+      nodes: <[ declaration ]>
+    ExportAllDeclarationSpecifier:
+      alias: 'export-namespace-specifier'
+      nodes: <[ source ]>
 
 syntax-flat = {}
 for , category of syntax
@@ -407,9 +524,10 @@ matches-map =
 
   BiOp: <[ BinaryExpression LogicalExpression AssignmentExpression ]>
   Function: <[ FunctionDeclaration FunctionExpression ]>
-  ForLoop: <[ ForStatement ForInStatement ]>
+  ForLoop: <[ ForStatement ForInStatement ForOfStatement ]>
   WhileLoop: <[ DoWhileStatement WhileStatement ]>
-  Loop: <[ ForStatement ForInStatement DoWhileStatement WhileStatement ]>
+  Class: <[ ClassExpression ClassExpression ]>
+  Loop: <[ ForStatement ForInStatement ForOfStatement DoWhileStatement WhileStatement ]>
 
 matches-alias-map =
   statement: 'Statement'
@@ -422,6 +540,7 @@ matches-alias-map =
   'for-loop': 'ForLoop'
   'while-loop': 'WhileLoop'
   loop: 'Loop'
+  class: 'Class'
 
 literals =
   null: 'Null'

@@ -475,7 +475,8 @@ syntax =
   Imports:
     ImportDeclaration:
       alias: 'import-dec'
-      nodes: <[ specifiers source ]>
+      nodes: <[ source ]>
+      node-arrays: <[ specifiers ]>
     ImportSpecifier:
       alias: 'import-specifier'
       nodes: <[ local imported ]>
@@ -488,7 +489,8 @@ syntax =
   Exports:
     ExportNamedDeclaration:
       alias: 'export-named-dec'
-      nodes: <[ declaration specifiers source ]>
+      nodes: <[ declaration source ]>
+      node-arrays: <[ specifiers ]>
     ExportSpecifier:
       alias: 'export-specifier'
       nodes: <[ local exported ]>

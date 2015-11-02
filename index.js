@@ -370,7 +370,8 @@
     Imports: {
       ImportDeclaration: {
         alias: 'import-dec',
-        nodes: ['specifiers', 'source']
+        nodes: ['source'],
+        nodeArrays: ['specifiers']
       },
       ImportSpecifier: {
         alias: 'import-specifier',
@@ -388,7 +389,8 @@
     Exports: {
       ExportNamedDeclaration: {
         alias: 'export-named-dec',
-        nodes: ['declaration', 'specifiers', 'source']
+        nodes: ['declaration', 'source'],
+        nodeArrays: ['specifiers']
       },
       ExportSpecifier: {
         alias: 'export-specifier',

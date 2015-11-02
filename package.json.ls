@@ -21,10 +21,7 @@ files:
   'LICENSE'
 
 bugs: 'https://github.com/gkz/grasp-syntax-javascript/issues'
-licenses:
-  * type: 'MIT'
-    url: 'https://raw.github.com/gkz/grasp-syntax-javascript/master/LICENSE'
-  ...
+license: 'MIT'
 engines:
   node: '>= 0.8.0'
 repository:
@@ -36,5 +33,5 @@ dependencies:
 
 dev-dependencies:
   livescript: '~1.4.0'
-  mocha: '~1.8.2'
+  mocha: '~2.1.0'
   istanbul: '~0.1.43'

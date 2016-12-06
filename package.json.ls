@@ -1,5 +1,5 @@
 name: 'grasp-syntax-javascript'
-version: '0.2.0'
+version: '0.2.1'
 
 author: 'George Zahariev <z@georgezahariev.com>'
 

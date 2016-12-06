@@ -472,6 +472,21 @@
         nodes: ['openingElement', 'closingElement'],
         nodeArrays: ['children']
       }
+    },
+    Types: {
+      TypeAnnotation: {
+        alias: 'type-annotation'
+      },
+      TypeAlias: {
+        alias: 'type-alias'
+      },
+      TypeCastExpression: {
+        alias: 'type-cast-exp',
+        nodes: ['expression']
+      },
+      InterfaceDeclaration: {
+        alias: 'interface-dec'
+      }
     }
   };
   syntaxFlat = {};

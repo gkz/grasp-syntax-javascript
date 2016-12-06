@@ -19,6 +19,26 @@
         primitives: ['value'],
         example: ['true', '1', '"string"']
       },
+      StringLiteral: {
+        alias: 'literal-str',
+        primitives: ['value'],
+        example: ['"string"']
+      },
+      NumericLiteral: {
+        alias: 'literal-num',
+        primitives: ['value'],
+        example: ['1']
+      },
+      BooleanLiteral: {
+        alias: 'literal-bool',
+        primitives: ['value'],
+        example: ['true']
+      },
+      NullLiteral: {
+        alias: 'literal-null',
+        primitives: ['value'],
+        example: ['null']
+      },
       RegExpLiteral: {
         alias: 'regex',
         primitives: ['regex'],
@@ -280,6 +300,58 @@
         nodeArrays: ['arguments'],
         syntax: '*callee*(*argument_1*, *argument_2*, *...*, *argument_n*)',
         example: 'f(1,2,3)'
+      },
+      JSXElement: {
+        alias: 'jsx-element',
+        nodes: ['openingElement', 'closingElement'],
+        nodeArrays: ['children']
+      },
+      JSXAttribute: {
+        alias: 'jsx-attr',
+        nodes: ['name', 'value'],
+        syntax: '*name*=*value*'
+      },
+      JSXOpeningElement: {
+        alias: 'jsx-opening-element',
+        nodes: ['name'],
+        nodeArrays: ['attributes']
+      },
+      JSXClosingElement: {
+        alias: 'jsx-closing-element',
+        nodes: ['name']
+      },
+      JSXEmptyExpression: {
+        alias: 'jsx-empty-exp',
+        example: '{}'
+      },
+      JSXExpressionContainer: {
+        alias: 'jsx-exp-container',
+        nodes: ['expression'],
+        syntax: '{*expression*}',
+        example: '{3}'
+      },
+      JSXIdentifier: {
+        alias: 'jsx-ident',
+        primitives: ['name'],
+        example: 'name'
+      },
+      JSXMemberExpression: {
+        alias: 'jsx-member',
+        nodes: ['object', 'property'],
+        syntax: '*object*.*property*',
+        example: 'Math.PI'
+      },
+      JSXNamespacedName: {
+        alias: 'jsx-namedspaced-name',
+        nodes: ['namespace', 'name']
+      },
+      JSXSpreadAttribute: {
+        alias: 'jsx-spread-attr',
+        nodes: ['argument']
+      },
+      JSXText: {
+        alias: 'jsx-text',
+        primitives: ['value']
       },
       MemberExpression: {
         alias: 'member',

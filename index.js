@@ -404,6 +404,54 @@
         alias: 'export-namespace-specifier',
         nodes: ['source']
       }
+    },
+    JSX: {
+      JSXIdentifier: {
+        alias: 'jsx-ident',
+        primitives: ['name']
+      },
+      JSXMemberExpression: {
+        alias: 'jsx-member-exp',
+        nodes: ['object', 'property']
+      },
+      JSXNamespacedName: {
+        alias: 'jsx-namespaced-name',
+        nodes: ['namespace', 'name']
+      },
+      JSXEmptyExpression: {
+        alias: 'jsx-empty'
+      },
+      JSXExpressionContainer: {
+        alias: 'jsx-exp-container',
+        nodes: ['expression']
+      },
+      JSXSpreadChild: {
+        alias: 'jsx-spread-child',
+        nodes: ['expression']
+      },
+      JSXOpeningElement: {
+        alias: 'jsx-opening-element',
+        nodes: ['name'],
+        nodeArrays: ['attributes'],
+        primitives: ['selfClosing']
+      },
+      JSXClosingElement: {
+        alias: 'jsx-closing-element',
+        nodes: ['name']
+      },
+      JSXAttribute: {
+        alias: 'jsx-attribute',
+        nodes: ['name', 'value']
+      },
+      JSXSpreadAttribute: {
+        alias: 'jsx-spread-attribute',
+        nodes: ['argument']
+      },
+      JSXElement: {
+        alias: 'jsx-element',
+        nodes: ['openingElement', 'closingElement'],
+        nodeArrays: ['children']
+      }
     }
   };
   syntaxFlat = {};

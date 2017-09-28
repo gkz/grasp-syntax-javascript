@@ -520,7 +520,7 @@
     Function: ['FunctionDeclaration', 'FunctionExpression'],
     ForLoop: ['ForStatement', 'ForInStatement', 'ForOfStatement'],
     WhileLoop: ['DoWhileStatement', 'WhileStatement'],
-    Class: ['ClassExpression', 'ClassExpression'],
+    Class: ['ClassDeclaration', 'ClassExpression'],
     Loop: ['ForStatement', 'ForInStatement', 'ForOfStatement', 'DoWhileStatement', 'WhileStatement']
   };
   matchesAliasMap = {

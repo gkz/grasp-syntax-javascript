@@ -175,7 +175,7 @@
         alias: 'func-dec',
         nodes: ['id', 'body'],
         nodeArrays: ['params'],
-        primitives: ['generator'],
+        primitives: ['generator', 'async'],
         syntax: 'function *id*([*param_1*], [*param_2*], [..., *param_3*])\n  *body*',
         example: 'function f(x, y) {\n  return x * y;\n}',
         note: 'A function declaration contrasts with a function expression (func-exp).'

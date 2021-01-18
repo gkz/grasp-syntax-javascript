@@ -259,7 +259,7 @@ syntax =
       alias: 'func-dec'
       nodes: <[ id body ]>
       node-arrays: <[ params ]>
-      primitives: <[ generator ]>
+      primitives: <[ generator async ]>
       syntax: '''
               function *id*([*param_1*], [*param_2*], [..., *param_3*])
                 *body*

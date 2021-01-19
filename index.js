@@ -175,7 +175,7 @@
         alias: 'func-dec',
         nodes: ['id', 'body'],
         nodeArrays: ['params'],
-        primitives: ['generator'],
+        primitives: ['generator', 'async'],
         syntax: 'function *id*([*param_1*], [*param_2*], [..., *param_3*])\n  *body*',
         example: 'function f(x, y) {\n  return x * y;\n}',
         note: 'A function declaration contrasts with a function expression (func-exp).'
@@ -220,7 +220,7 @@
         alias: 'func-exp',
         nodes: ['id', 'body'],
         nodeArrays: ['params'],
-        primitives: ['generator'],
+        primitives: ['generator', 'async'],
         syntax: 'function [*id*]([*param_1*], [*param_2*], [..., *param_3*])\n  *body*',
         example: 'let f = function(x, y) {\n  return x * y;\n}',
         note: 'A function expression contrasts with a function declaration (func-dec).'
@@ -229,7 +229,7 @@
         alias: 'arrow',
         nodes: ['id', 'body'],
         nodeArrays: ['params'],
-        primitives: ['generator', 'expression'],
+        primitives: ['generator', 'expression', 'async'],
         syntax: '([*param_1*], [*param_2*], [..., *param_3*]) => *body*',
         example: '(x, y) => x * y'
       },
